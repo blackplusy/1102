@@ -6,7 +6,7 @@ while 1:
         print('用户名正确')
         while 1:
             passwd=input('请输入用户名对应的密码:')
-            if dic1['admin']==passwd:
+            if dic1[name]==passwd
                 print('登录成功')
                 break
             else:
