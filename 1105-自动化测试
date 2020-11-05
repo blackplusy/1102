@@ -1,0 +1,37 @@
+1.web自动化测试
+a.搭建自动化测试环境
+	1.安装配置python
+		Add Python To Path
+	2.安装selenium模块
+		win+r--cmd--pip install selenium
+	3.安装配置pycharm
+		pycharm:开源版(社区版)，专业版(python的web开发)
+		1)下载地址:
+			https://download.jetbrains.8686c.com/python/pycharm-community-2020.2.3.exe
+		2)pycharm的配置
+			interpreter：pycharm中配置python解释器，如果没有配置，默认是虚拟环境中python
+			新建项目：
+			file-new project
+			新建代码文件:
+			右键项目--new --python file--起名字保存
+			pycharm配置
+			file--settings--project xxx--python interpreter--点击螺丝--add--existing xxx--点击...--选择系统中python的安装路径下的python--选择python.exe--make all xxx--ok--ok
+	4.安装配置chromedriver
+		下载对应浏览器的驱动版本
+		selenium 2.x自带firefox驱动，selenium 3.x所有浏览器的驱动都要自己单独下载安装，webdriver和浏览器的版本要一致
+		chrome版本: 86.0.4240.183
+		1)查看浏览器的版本
+			帮助--关于xxx
+		2)搜索浏览器对应的webdriver驱动
+			http://npm.taobao.org/mirrors/chromedriver/
+			下载版本对应的win32压缩包
+		3)把下载好的文件解压，解压后的.exe文件复制到python的安装路径下
+		4)测试代码
+			#coding=utf-8
+			from selenium import  webdriver
+			br=webdriver.Chrome()
+			br.get("https://www.taobao.com")
+
+
+
+
