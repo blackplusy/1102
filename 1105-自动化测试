@@ -96,7 +96,79 @@ h.selenium元素定位方式
 		理想状态下，页面中都应该有id，name，class，超链接等等，实际情况不是，属性相同，刷新页面值都会变化
 	9.css定位
 		相对于xpath简洁，速度快
-		
+i.ecshop环境搭建
+	1.常见操作系统
+		unix
+		linux
+		windows
+	2.web服务器
+		apache
+		tomcat
+		iis
+		nginx
+	3.数据库服务器
+		oracle
+		mysql
+		sqlserver
+	4.常见搭配
+		操作系统        web服务器        数据库服务器
+		win                iis             sqlsever/access
+		                  apache           mysql
+		                  nginx            mysql
+		                  tomcat           mysql/oracle
+		linux             apache           mysql          (LAMP)
+			              nginx            mysql          (LNMP)
+			              tomcat           mysql/oracle
+	5.集成环境
+		wamp    
+			w:windows
+			a:apache
+			m:mysql
+			p:php
+		xampp
+			x:任意操作系统
+			p:perl
+		phpstudy
+	6.phpstudy简介
+		建议下载2016
+		傻瓜安装
+		文件夹简介
+			apache 		web服务器所在文件夹
+				bin 	存放apache命令的位置
+				conf	存放apache配置文件的位置
+					httpd.conf apache的配置文件
+				logs    存放apache日志的位置
+			mysql       数据库软件所在文件夹
+				bin     存放mysql命令的位置
+				data    存放mysql数据的位置
+				lib     存放库文件的位置
+			WWW         项目代码存放位置
+	7.安装部署ecshop
+		1)启动mysql
+		2)启动apache
+		3)检查服务
+			mysql的主服务:mysqld
+			apache的主服务:httpd
+				win+r--cmd--tasklist | find "httpd"
+				tasklist 查看当前系统进程
+				|        管道，前面的输出作为后面的输入
+				find     搜索
+				win+r--cmd--tasklist | find "mysqld"
+			mysql的端口:3306
+			apache的端口:80
+				win+r--cmd--netstat -an | find "3306"
+				netstat -an 查看系统开放的所有端口
+			0.0.0.0 任意IP
+			127.0.0.1 localhost 电脑本机
+		4)下载ecshop.zip压缩包解压到WWW文件夹中
+		5)浏览器中输入127.0.0.1/ecshop1按照提示安装
+		6)配置系统注意:
+			数据库主机 localhost
+			端口号     3306
+			用户名     root
+			密码       root
+			数据库名   test
+
 
 
 
