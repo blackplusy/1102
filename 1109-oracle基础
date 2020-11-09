@@ -1,0 +1,33 @@
+1.常见的数据库软件
+	关系型数据库
+		informix IBM+HP  小机
+		db2      IBM
+		oracle   甲骨文
+		mysql    甲骨文
+		sqlserver 微软
+	非关系型数据库
+		mongodb  大数据、爬虫
+		redis    缓存、消息队列
+		cassandra facebook
+2.oracle基础
+	a.oracle的架构
+		c/s架构软件
+		c:客户端              -----               s:服务器
+	b.oracle的版本
+		8i
+		9i           i:internet 
+		10g
+		11g          g:grid（网格）
+		12c          c:cloud(云)
+	c.oracle的下载
+		https://www.oracle.com/database/technologies/oracle-database-software-downloads.html
+		操作系统类型
+		操作系统位数
+	d.操作oracle管理的工具
+		sqlplus            字符界面
+		isqlplus           基本上已经不用
+		em                 企业管理器   
+		plsql developer    第三方开发(没有64位)
+		sql developer      官方开发
+		toad、navicat、dbeaver
+3.
