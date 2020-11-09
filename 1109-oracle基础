@@ -84,6 +84,48 @@
 		数据库  ORCL
 		connect as sysdba
 
+5.用户和权限
+	a.oracle的管理员
+		sys    
+		system
+		这两个用户登录使用sydba权限
+	b.oracle的用户操作
+		1>创建用户
+			语法:create user 用户 identified by 密码;
+			需求:创建用户kobe，密码nba
+			create user kobe identified by nba;
+			补充：sqlplus 登录方式
+				sqlplus 用户名/密码
+		2>修改用户
+			修改密码:alter user 用户identified by 密码;
+			需求:修改kobe的密码为cba
+			alter user kobe identified by cba;
+			锁定、解锁用户:alter user 用户 【indentified by 密码】 account unlock(lock);
+			需求:解锁用户scott
+			alter user scott account unlock;
+		3>删除用户
+			语法:drop user 用户名;
+			需求:删除用户kobe
+			drop user kobe;
+	c.oracle的权限
+		connect    链接数据库权限
+		resource   调用数据库资源权限
+		dba        管理员权限
+		1>授权
+			语法:grant 权限 to 用户;
+			需求:赋予kobe用户链接数据库和调用数据库权限
+				grant connect,resource to kobe;		
+		2>回收授权
+			语法:revoke 权限 from 用户;
+			需求:取消kobe用户的连接数据库权限
+				revoke connect from kobe;		
+	d.角色
+		权限的集合
+		normal 	普通用户
+		sysoper 系统操作员
+		sysdba  管理员
+
+
 
 
 
