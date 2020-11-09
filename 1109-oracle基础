@@ -125,6 +125,50 @@
 		sysoper 系统操作员
 		sysdba  管理员
 
+6.表
+	类似于表格，行、列、标题、名字
+	a.数据类型
+		字符   'abc' '123'  char varchar varchar2
+		数值   123 456      number
+		日期   2000-01-01   date
+		char和varchar区别
+		char              定长，速度快，占用空间
+		varchar           变长，速度慢，节省空间
+	b.建表
+		语法:create table 表 (
+				列 数据类型,
+				列 数据类型,
+				。。。
+			);
+		需求:创建通讯录表(txl),名(name)字符类型，年龄(age) 数值类型，生日(birth) 日期类型
+			create table txl(
+				name char(20),
+				age  number,
+				birth date
+			);
+	c.查看表结构
+		1>sqlplus中登录(sqlplus scott/tige)
+			desc 表名;
+			desc txl;
+		2>右键表--describe
+		3>右键表--view--columns
+		4>小箭头
+	d.修改表结构
+		1>增加列
+			需求:txl表中增加列，wechat，字符类型
+			alter table txl add wechat char(10);
+		2>修改列
+			需求:txl表中wechat列数据类型修改为number
+			alter table txl modify wechat number;
+		3>删除列
+			需求:删除txl表中的wechat列
+			alter table txl drop column wechat;
+	e.删除表结构
+		语法:drop table 表;
+		删除txl表
+		drop table txl;
+		
+
 
 
 
