@@ -30,4 +30,61 @@
 		plsql developer    第三方开发(没有64位)
 		sql developer      官方开发
 		toad、navicat、dbeaver
-3.
+3.修改windows密码
+	右键计算机--管理--本地用户和组--用户--Administor--右键设置密码--继续--回车X2
+4.oracle的服务
+	c:客户端              -----               s:服务器
+	tns配置                                   oracle的主服务
+											  oracle的监听服务
+	a.服务端服务
+		1>图形化启动和关闭服务
+			计算机--管理--服务和应用程序--服务
+			OracleSercieORCL  		oracle的主服务
+			Oracle...TNSListener    oracle的监听服务
+		2>命令方式启动和关闭服务
+			21>oracle的主服务
+				win+r--cmd--sqlplus / as sysdba (管理员登录本地数据库)
+				假如看到已连接空闲例程说明数据库没有启动
+				查看数据库状态
+					select status from v$instance;
+				启动数据库
+					startup;
+				关闭数据库
+					shutdown immediate;
+			22>oracle的监听服务
+				win+r--cmd--
+				查看监听状态
+					lsnrctl status  查看监听状态
+				启动监听
+					lsnrctl start
+				关闭监听
+					lsnrctl stop
+		3>监听故障处理方法
+			重建监听(先删除再新建)
+				win+r--cmd--netca--监听程序配置--删除--Listener--是--下一步X2--监听程序配置--添加--LISTERNER--下一步X3--是否配置另外一个监听(否)--下一步--完成
+	b.客户端配置
+		TNS配置文件
+		C:\oracle\product\10.2.0\db_1\NETWORK\ADMIN\tnsnames.ora
+		ORCL =                                                                 链接标识
+		  (DESCRIPTION =
+		    (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.255.132)(PORT = 1521))  协议、主机地址、端口号(oracle默认端口1521)
+		    (CONNECT_DATA =
+		      (SERVER = DEDICATED)
+		      (SERVICE_NAME = orcl)                                             服务名
+		    )
+		  )
+		查看自己电脑IP地址
+			win+r--cmd--ipconfig
+		测试tns是否配置正确
+			win+r--cmd--tnsping orcl
+			如果出现OK的话说明可以链接数据库
+	c.plsql developer 登录
+		用户名 sys
+		密码   随意
+		数据库  ORCL
+		connect as sysdba
+
+
+
+
+
