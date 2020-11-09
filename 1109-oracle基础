@@ -167,7 +167,63 @@
 		语法:drop table 表;
 		删除txl表
 		drop table txl;
-		
+	f.约束
+		主键约束  列中的数据唯一的，不能为空，针对于外键来说的
+		唯一约束  列中的数据唯一，可以为空，作为主键约束的补充
+		检查约束  列中的数据是否满足条件
+		非空约束  列中的数据不可以为空
+		外键约束  列中的数据依赖于另外一张表的列的数据
+		create table 表(
+			列 数据类型 primary key,
+			列 数据类型 unique,
+			列 数据类型 not null,
+			列 数据类型 check(条件),
+			列 数据类型 references 被参考表(被参考列)
+		);
+		1>主键约束
+			需求:创建表商品(goods),id 数值类型主键约束，商品名称(name)字符类型
+			create table goods(
+					id number primary key,
+					name char(10)
+				);
+			补充:查看约束的方法
+			1.右键表--view
+			2.箭头法
+		2>唯一约束
+			需求:创建员工表(people),身份证(id) 字符类型主键约束，电话（tel） 字符类型，唯一约束
+			create table people(
+				id char(10) primary key,
+				tel char(20) unique
+			);
+		3>非空约束
+			需求:创建表订单，订单id 数值类型不能为空，订单价格(price) 数值类型
+			create table dd(
+				id number not null,
+				price number
+			);
+		4>检查约束
+			需求：创建学生表(stu),名字，字符类型，性别(sex) 只能是男或者女
+			create table  stu (
+				name char(10),
+				sex char(10) check(sex='男' or sex='女')
+			)	;
+		5>外键约束
+			被参考表的被参考列一定存在
+			被参考列的数据类型和参考列的数据类型必须一致
+			被参考列一定是主键约束
+			需求:创建客户表(customer),客户id(id) 数值类型 主键约束,客户信息(info) 字符类型
+			create table customer (
+				id number primary key,
+				info char(10)
+			);
+			需求:创建订单表(order1),客户id 参考客户表中客户id，订单信息(info) 字符类型
+			create table order1 (
+				id number references customer(id),
+				info char(10)
+			);
+			
+
+
 
 
 
