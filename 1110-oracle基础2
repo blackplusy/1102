@@ -142,6 +142,55 @@
 			distinct()去重
 			select distinct(job) from emp;
 
+7.多表查询
+	当一张表无法满足条件的时候使用多表查询
+	dept 表结构
+	deptno 部门号
+	dname  部门名称
+	loc    部门地址
+	a.笛卡尔积(集)
+	两张表不做任何关联产生的数据，数据量成倍增加，无效数据增加，为了避免此类情况使用内联查询
+	select * from emp;
+	select * from dept;
+	select * from emp,dept;
+	b.内联查询
+	语法:
+		select 列 from 表1,表2 where 表1.列=表2.列;
+		select 列 from 表1 inner join 表2 on 表1.列=表2.列;
+	关联列的判断
+		名字相同
+		作用一致
+		主外键关系
+	需求:查询SCOTT的所在部门的名称
+	1>分析相关列
+		员工名字
+		部门名称
+	2>分析相关表
+		员工名字  ename  emp
+		部门名称  dname
+	3>关联
+		select * from emp inner join dept on emp.deptno=dept.deptno;
+	4>过滤
+		select dname from emp inner join dept on emp.deptno=dept.deptno
+		where ename='SCOTT';
+	需求:查询部门地址在DALLAS的所有员工的名字,部门号
+	1>分析相关列
+		部门地址
+		员工名字
+	2>分析表
+		dname dept
+		ename emp
+	3>关联
+		select * from emp e inner join dept d
+		on e.deptno=d.deptno;
+	4>过滤
+		select e.ename,d.deptno from emp e inner join dept d
+		on e.deptno=d.deptno
+		where d.loc='DALLAS';		
+
+
+
+
 
 
 
