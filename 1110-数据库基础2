@@ -1,0 +1,62 @@
+1.SQL的分类
+	SQL:结构化查询语言
+		DDL:数据库定义语言  create alter drop truncate
+		DML:数据库操作语言  insert update delete
+		DQL:数据库查询语言  select
+		DCL:数据库控制语言  grant revoke
+2.事务
+	一件事有开端有结尾
+	落魄老师---------------bank------------大佬们
+		commit  提交 数据到数据库中，除非人为修改否则不会变化
+		rollback 回滚 数据库状态恢复到最后一次提交的状态
+	DML会触发事务的开始，就一定要结束
+3.数据的新增
+	数值类型数据直接使用
+	字符类型数据加单引号
+	日期类型数据加to_date()函数
+	sysdate 系统当前时间
+	a.向表中指定列新增数据
+		语法:insert into 表(列1,列2) values(值1,值2);
+		需求:向日本表中新增数据，主角苍老师，售价1000
+		insert into 日本(电影名称主角,电影售价) values('苍老师',1000);
+		需求:日本表中新增数据，主角，周杰伦，价格3000，发行日期当前时间
+		insert into 日本(电影名称主角,电影售价,发行日期) values('周杰伦',3000,sysdate);
+	b.向表中所有列新增数据
+		语法:insert into 表 values(值1,值2,值3...)
+		需求:向日本表中新增数据，主角老毕，售价2000，发行日期2000-01-01
+		insert into 日本 values('老毕',2000,to_date('2000-01-01','YYYY-MM-DD'));
+		insert into 日本 values('老毕',2000,to_date('2000-01-01 18:00:00','YYYY-MM-DD  hh24:mi:ss'));
+4.数据的修改
+	数值类型数据直接使用
+	字符类型数据加单引号
+	日期类型数据加to_date()函数
+	语法:update 表 set 列=值 where 条件;
+	如果不加where条件，默认修改的是列中所有的值
+	如果增加where条件，修改的是指定行的列的值
+	需求:修改日本表中名字是周杰伦的，售价为998
+	update 日本 set 电影售价=998 where 电影名称主角='周杰伦';
+	需求:修改日本表中所有电影售价为0
+	update 日本 set 电影售价=0;
+5.数据的删除
+	delete    可以删除指定数据，删除数据可以找回，DML
+	truncate  只能删除表中所有数据，破坏了表中数据的结构，删除数据无法找回 DDL
+	a.delete
+		语法:delete 表 where 条件;
+		如果增加where条件删除的是指定行的数据
+		如果不加where条件删除的是整表数据
+		需求:删除日本表中名字是老毕的所有信息
+		delete from 日本 where 电影名称主角='老毕';
+		commit;
+		需求:删除日本表中所有数据
+		delete from 日本;
+		commit;
+	b.truncate
+		语法:truncate table 表;
+		需求:删除日本表中所有数据
+		truncate table 日本;
+
+
+
+
+
+
