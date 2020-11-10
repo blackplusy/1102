@@ -190,6 +190,51 @@
 
 
 
+查询826班姓张的学生信息？
+	class
+	student
+select s.* from class c inner join student s
+on c.classid=s.classid
+and c.classname='826'
+and s.sname like '张%';
+
+查询蔡学森选修的课程名称？
+	student
+	course
+select co.cname from student s 
+inner join stscore st on s.studentid=st.studentid
+inner join course co on co.courseid=st.courseid
+where s.sname='蔡学森';
+
+查询蔡学森的LINUX课程的分数？
+	student
+	course
+	stscore
+select st.score from student s 
+inner join stscore st on s.studentid=st.studentid
+inner join course co on co.courseid=st.courseid
+where s.sname='蔡学森'
+and   co.cname='LINUX';
+
+查询826班所有女生WEB课程的成绩？
+	class
+	student
+	course
+	stscore
+select co.cname,st.score from class c
+inner join student s on c.classid=s.classid
+inner join stscore st on s.studentid=st.studentid
+inner join course co on co.courseid=st.courseid
+where c.classname='826'
+and s.sex='女'
+and co.cname='WEB';
+
+
+查询选修了WEB课程的班级有哪些？
+
+查询826班姓张的学生的ORACLE课程的成绩？
+
+
 
 
 
