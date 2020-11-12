@@ -262,6 +262,34 @@ group by deptno,job
 			select score from stscore 
 			where studentid in (select studentid from student where sname like '蔡%' and classid in (select classid from class where classname='826'))
 			and courseid in (select courseid from course where cname='ORACLE');
+2.排序和分页
+	a.排序
+		顺序(从小到大)
+			order by 列;
+			order by 列 asc;
+		倒序(从大到小)
+			order by 列 desc;
+		语法:select 列 from 表
+				where 条件
+					group by 分组条件
+						having 分组后过滤条件
+							order by 排序条件：
+		需求:查询emp表中所有数据，按照工资从小到大进行排序
+			select * from emp  order by sal;
+		需求:查询emp表中所有数据，按照部门号从小到大,工资从大到小进行排序查询
+			select * from emp order by deptno,sal desc;
+	b.分页
+		rownum  行号，一定要包括1，不属于任何一张表
+		需求:查询emp表中前8行数据
+			select * from emp where rownum<8;
+		需求:查询emp表中8到10行数据
+			select * from emp where rownum>=8 and rownum<=10;--无效
+			select t.*,rownum rn from emp t;
+			select * from (select t.*,rownum rn from emp t)
+			where rn>=8 and rn<=10;
+			
+
+
 
 
 
