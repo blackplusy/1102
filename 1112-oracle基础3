@@ -224,7 +224,44 @@ group by deptno,job
 	需求:查询emp表中工资大于1000，2000，3000中所有的值的员工所有信息
 	select * from emp where sal>1000 and sal>2000 and sal>3000;
 	select * from emp where sal>all(1000,2000,3000);
-	
+
+
+子查询练习:
+	1.查询姓蔡学生所在班级名称
+		a.查询学生表中满足条件classid
+			select classid from student where sname like '蔡%';
+		b.查询班级表中classid是上面查询出来结果的classname
+			select classname from class where classid in (select classid from student where sname like '蔡%');
+
+	2.查询学生数量超过20的班级名称
+		a.查询学生表中满足条件的classid
+			select classid from student 
+			group by classid
+			having count(studentid)>20;
+		b.查询班级表中classid是上面查询出来结果的classname
+			select classname from class 
+			where classid in 
+			(select classid from student 
+			group by classid
+			having count(studentid)>20)
+	3.查询ORACLE课程分数超过60的学生名字
+		a.查询课程表中满足条件的courseid
+			select courseid from course where cname='ORACLE';
+		b.查询分数表中courseid是上面查询出来结果的并且分数超过60的studentid
+			select studentid from stscore where courseid in (select courseid from course where cname='ORACLE') and score>60;
+		c.查询学生表中studentid为上面查询结果的名字
+			select sname from student where studentid in (elect studentid from stscore where courseid in (select courseid from course where cname='ORACLE') and score>60);
+	4.查询826班姓蔡的学生的ORACLE课程的分数
+		a.查询班级表中满足条件的classid
+			select classid from class where classname='826';
+		b.查询学生表中满足条件的studentid
+			select studentid from student where sname like '蔡%' and classid in (select classid from class where classname='826');
+		c.查询课程表中满足条件的courseid
+			select courseid from course where cname='ORACLE';
+		d.查询分数表中满足条件的分数
+			select score from stscore 
+			where studentid in (select studentid from student where sname like '蔡%' and classid in (select classid from class where classname='826'))
+			and courseid in (select courseid from course where cname='ORACLE');
 
 
 
