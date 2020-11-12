@@ -178,9 +178,58 @@ and   st.courseid=co.courseid
 group by c.classname,co.cname;
 
 
+
+
 --emp表中每个部门，每个职位的最高薪资是？
 select  deptno,job,max(sal) from emp
 group by deptno,job
+=========================================================================
+1.子查询
+	一条SQL语句的执行依赖于另外一条SQL语句的执行结果
+	需求:查询emp表中SCOTT的上司的名字
+		a.查询emp表中满足条件的mgr
+			select mgr from emp where ename='SCOTT';
+		b.查询emp表中empno是上面查询出来结果的员工的名字
+			select ename from emp where empno=(select mgr from emp where ename='SCOTT');
+	需求:查询emp表中SCOTT的部门地址
+		a.查询emp表中满足条件的deptno
+			select deptno from emp where ename='SCOTT';
+		b.查询dept表中deptno为上面查询出来结果的部门地址
+			select dname from dept where deptno=(select deptno from emp where ename='SCOTT');
+	子查询可以用于数据的新增、修改、删除、查询
+	子查询分为单行子查询、多行子查询
+		单行子查询：查询子句返回的结果是一行，可以用= ，in
+		多行子查询:查询子句返回的结果是多行，可以用 all any in 
+	需求:查询emp表中工资最高的人的名字
+		a.查询emp表中最高工资是多少
+			select max(sal) from emp;
+		b.查询emp表中工资为上面查询出来结果的名字
+			select ename from emp where sal=(select max(sal) from emp);
+	需求:查询emp表中工资小于2000的员工的部门名字
+		a.查询emp表中满足条件的deptno
+			select deptno from emp where sal<2000;
+		b.查询dept表中deptno为上面查询出来结果的部门名字
+			select dname from dept where deptno in (select deptno from emp where sal<2000);
+	需求:查询emp表中工资最高的人的名字
+		a.查询emp表中出最高工资
+			select max(sal) from emp;
+		b.把上面查询出来的结果作为一张表来进行多表查询
+			select e.ename  from emp e,(select max(sal) sal from emp) f
+			where e.sal=f.sal;
+	all()   所有
+	any()   任何一个
+	需求:查询emp表中工资大于1000，2000，3000中任何一个的值的员工所有信息
+	select * from emp where sal>1000 or sal>2000 or sal>3000;
+	select * from emp where sal>any(1000,2000,3000);
+	需求:查询emp表中工资大于1000，2000，3000中所有的值的员工所有信息
+	select * from emp where sal>1000 and sal>2000 and sal>3000;
+	select * from emp where sal>all(1000,2000,3000);
+	
+
+
+
+
+
 
 
 
