@@ -1,0 +1,118 @@
+1.回顾
+	a.简单查询
+		语法:select 列 from 表 where 条件;
+	b.where子句
+		b1.比较
+			>
+			<
+			=
+			>=
+			<=
+			!+
+		b2.关系
+			and
+			or
+			not
+		b3.区间
+			between ... and...
+		b4.空值
+			is null
+			is not null
+			nvl() 函数
+		b5.模糊
+			like
+			_
+			%
+		b6.in
+		b7.函数
+			upper
+			lower
+			initcap
+			round
+			distinct
+	c.多表查询
+		dept 表结构
+			deptno 部门号
+			dname  部门名称
+			loc    部门地址
+		emp表结构:
+			empno 员工号
+			ename 员工名字
+			job   职位
+			mgr   上司的员工号
+			hiredate 入职日期
+			sal    工资
+			comm   佣金
+			deptno 部门号
+		c1.内联查询
+			语法:select 列 from 表1 inner join 表2 on 表1.列=表2.列;
+		    select 列 from 表1 ,表2 where 表1.列=表2.列;
+		c2.自联查询
+			需求:查询SCOTT的上司的名字
+			select a.ename,b.ename  from emp a,emp b
+			where a.mgr=b.empno
+			and a.ename='SCOTT';
+		c3.左联查询和右联查询
+			左联语法:
+				左表中数据都有
+				结果:内联查询结果+左表中有，右表中没有的右表显示为空
+				select 列 from 左表 left join 右表 on 左表.列=右表.列;
+				select * from a left join b on a.a=b.a;
+			右联语法:
+				右表中所有数据都有
+				select 列 from 左表 right join 右表 on 左表.列=右表.列;
+				select * from a right join b on a.a=b.a;
+2.分组查询
+	按照某种条件进行分组，归类
+	a.分组函数(聚合)函数
+		max()    最大值
+		min()    最小值
+		avg()    平均值
+		sum()    求和
+		count()  计数
+		分组函数通常和分组一起使用，但是也可以单独使用
+		需求:查询emp表中最高工资，最低工资，平均工资
+		select max(sal),min(sal),avg(sal) from emp;
+	b.分组查询
+		语法:
+		select 列 from 表
+				where 条件
+						group by 分组条件
+								having 分组后过滤条件;
+		select deptno from emp group by deptno;           ---Y
+		select deptno,ename from emp group by deptno;     ---N
+		select * from emp group by deptno;                ---N
+		需求:查询emp表中每个部门有多少个员工，要求显示部门号，员工数量
+			select deptno,count(*) from emp
+			group by deptno;
+		需求:查询每个部门的最高工资，最低工资，平均工资，要求显示部门名称，对应最高、最低、平均薪资
+			1.分析列
+					sal
+					dname
+			2.分析表
+				emp
+				dept
+			3.关联
+				select * from emp e,dept d
+				where e.deptno=d.deptno;
+			4.过滤
+				select d.dname,max(e.sal),min(e.sal),avg(e.sal) from emp e,dept d
+				where e.deptno=d.deptno
+				group by d.dname;
+	c.分组后过滤
+		where  		分组前过滤，后面不能直接跟分组函数
+		having      分组后过滤，后面可以直接跟分组函数
+		需求:查询最高薪资高于3000的部门名称
+			select d.dname from emp e,dept d
+				where e.deptno=d.deptno
+				group by d.dname
+				having max(e.sal)>3000;
+
+
+
+
+
+
+
+
+
