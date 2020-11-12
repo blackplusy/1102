@@ -8,7 +8,7 @@
 			=
 			>=
 			<=
-			!=
+			!+
 		b2.关系
 			and
 			or
@@ -109,7 +109,82 @@
 				having max(e.sal)>3000;
 
 
+--查询每门课程的总分、最高分、最低分、平均分
 
+
+
+
+
+
+
+--查询826班所有课程的总分、平均分、最高分、最低分
+class
+course
+stscore
+student
+
+select co.cname,sum(st.score),avg(st.score),max(st.score),min(st.score) 
+from class	c,course co,stscore	st,student s
+where c.classid=s.classid
+and   s.studentid=st.studentid
+and   st.courseid=co.courseid
+and   c.classname='826'
+group by co.cname;
+
+
+--查询826班oracle课程的总分、平均分、最高分、最低分
+select co.cname,sum(st.score),avg(st.score),max(st.score),min(st.score) 
+from class	c,course co,stscore	st,student s
+where c.classid=s.classid
+and   s.studentid=st.studentid
+and   st.courseid=co.courseid
+and   c.classname='826'
+group by co.cname
+having co.cname='oralce';
+
+
+select co.cname,sum(st.score),avg(st.score),max(st.score),min(st.score) 
+from class	c,course co,stscore	st,student s
+where c.classid=s.classid
+and   s.studentid=st.studentid
+and   st.courseid=co.courseid
+and   c.classname='826'
+and   co.cname='oracle'
+group by co.cname;
+
+
+--查询每个学员的总分、平均分、最高分、最低分
+
+select s.sname,sum(st.score),avg(st.score),max(st.score)   from student s,stscore st
+where s.studentid=st.studentid
+group by s.sname;
+
+
+--查询每个学员的总分、平均分、最高分、最低分，只显示总分在200分以上的学员
+
+select s.sname,sum(st.score),avg(st.score),max(st.score)   from student s,stscore st
+where s.studentid=st.studentid
+group by s.sname
+having sum(st.score)>200;
+
+
+--查询每个班级每门课程的总分、平均分、最高分、最低分
+
+select co.cname,sum(st.score),avg(st.score),max(st.score),min(st.score) 
+from class	c,course co,stscore	st,student s
+where c.classid=s.classid
+and   s.studentid=st.studentid
+and   st.courseid=co.courseid
+group by c.classname,co.cname;
+
+
+--emp表中每个部门，每个职位的最高薪资是？
+select  deptno,job,max(sal) from emp
+group by deptno,job
+
+
+
+ 
 
 
 
