@@ -42,4 +42,25 @@
 	and g.math>90
 	order by s.class desc;
 
+--a.png
+	select  z.作者姓名,t.图书名,t.出版社 from 图书 t,作者 z
+	where t.作者编号=z.作者编号
+	and z.年龄<(select avg(年龄) from 作者)；
+--1.jpg
+	1.select * from test1 where department='计算机系' and place='北京';
+	2.update test1 set department='信息学院' where department='计算机系';
+	commit;
+	3.
+	select t1.no,t1.name,t2.grade,t2.courses  from test1 t1,test2 t2
+	where t1.no=t2.no
+	and t2.grade>=75;
+--4.png
+	1.select xm,zkzh from tb_student where score>0 and score<5;
+	2.select * from tb_student where xm='张三' and score=5;
+	3.
+	select x.姓名, c.成绩表  from 学生表 x,成绩表 c
+	where x.准考证号=c.准考证号
+	and x.年龄 between 20 and 35
+	order by x.准考证号 desc;
+	
 
