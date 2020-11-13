@@ -62,5 +62,32 @@
 	where x.准考证号=c.准考证号
 	and x.年龄 between 20 and 35
 	order by x.准考证号 desc;
+--2.png
+	1.select count(*) from table1;
+	2.
+	select t1.姓名,t2.家庭住址  from table1 t1,table2 t2
+	where t1.学生id=t2.学生id
+	and t1.姓名 like '张%'
+	and t1.性别='女'
+	order By t1.姓名;
+
+--5.bmp
+	select avg(english) from mark;
+	select m.math,c.name,c.address,c.telno from cust c,mark m
+	where c.studentno=m.studentno
+	and c.studentno in (11,22,33,44,55);
+
+--6.jpg
+	create table user (
+		userid int(11) primary key,
+		username varchar2(20) not null,
+		password varchar2(20) not null,
+		crtime date not null
+	);
+	insert into user values(1002,'admin','test',to_date('2000-01-01','YYYY-MM-DD'));
+--3.png
+	select * from dt_pay where salary>(select avg(salary) from dt_pay);
+	select * from dt_pay;
+	tuncate table dt_pay;
 	
 
