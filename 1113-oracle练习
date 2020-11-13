@@ -89,5 +89,56 @@
 	select * from dt_pay where salary>(select avg(salary) from dt_pay);
 	select * from dt_pay;
 	tuncate table dt_pay;
+--7.jpg
+	1.
+	a.查询c表中满足条件的c#
+		select c# from c where cn='税收基础';
+	b.查询sc表中c#为上面查询结果的s#
+		select s# from sc where c# in (select c# from c where cn='税收基础');
+	c.查询s表中s#为上面查询出来结果的信息
+		select s#,sn from s where s# in (select s# from sc where c# in (select c# from c where cn='税收基础'));
+	2.
+	a.查询sc表中满足条件的s#
+		select s# from sc where c#='C2';
+	b.查询s表中s#为上面查询结果的信息
+		select sn,sd from s where s# in (select s# from sc where c#='C2');
+	3.
+		select sn,sd from s where s# in (select s# from sc where c#!='C5');
+	4.
+		select count(distinct(s#)) from sc ;
+	5.
+	a.查询sc表中满足条件的s#
+		select s# from sc group by s# having count(c#)>5;
+	b.查询s表中s#为上面查询结果的信息
+		select s#,sd from s where s# in (select s# from sc group by s# having count(c#)>5);
+--qq笔试
+	1.select ename from emp where deptno=30;
+	2.select ename,empno,deptno from emp;
+	3.select ename from emp where nvl(comm,0)>sal;
+	4.select ename from emp where nvl(comm,0)>sal*0.6;
+
+--8.jpg
+	1.
+	create table store_information(
+		name    char(20) not null,
+		sales   number not null,
+		Date    date not null
+	);
+	2.
+	alter table store_information add Memo char(20);
+	3.
+	alter table store_information rename column name to store_name;
+	replace(判断的列,如果是xxx,显示为xxx)函数
+	update store_information set store_name=replace(storename,'店','分店');
+	commit;
+	4.
+	select store_name,Date,avg(sales) from store_information
+	group by storename,Date;
+	5.
+	select  storename from store_information
+	group by storename
+	having sum(sales)>1000000;
 	
+
+
 
