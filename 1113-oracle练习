@@ -1,0 +1,45 @@
+--2.jpg
+	1.
+	select s.name from student s,achievement a
+	where s.id=a.id and a.mark>85;
+	2.
+	select count(id) from achievement where mark>=90
+	count(*)   包含空值
+	count(id)  不包含空值
+	3.
+	insert into achievement values((select id from student where name='Robert'),80);
+	commit;
+	4.
+	update achievement set mark=87 where id=(select id from student where name='Rose');
+	commit;
+	5.
+	delete achievement where id=(select id from student where name='Betty');
+	delete student where name='Betty';
+	commi;
+
+--4.jpg
+	1.select s#,grade from sc where c#='C2';
+	2.select sname from s where sname like 'D%';
+	3.
+	select s.s#,s.sname from s,sc,c
+	where s.s#=sc.s#
+	and   c.c#=sc.c#
+	and   c.cname='Maths';
+	4.
+	a.查询sc表中选修课程号为C2的学生学号
+		select s# from sc where c#='C2';
+	b.查询sc表中选修课程是C4的并且学号在上面查询出来结果中的学号
+		select s# from sc where c#='C4' and s# in (select s# from sc where c#='C2');
+--1.jpg
+	1.
+	select s.class,count(s.name)from stinfo s,grade g
+	where s.id=g.id
+	and g.math<60
+	group by s.class;
+	2.
+	select s.name from stinfo s,grade g
+	where s.id=g.id
+	and g.math>90
+	order by s.class desc;
+
+
