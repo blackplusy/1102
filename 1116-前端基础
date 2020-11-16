@@ -51,7 +51,65 @@
 			mysql
 			mongodb
 
+3.访问网站的过程
+	a.浏览器中输入www.sina.com.cn
+	b.系统中回到hosts文件中搜索是否有www.sina.com.cn对应的IP地址
+	c.数据通过网络传输到DNS服务器(解析域名-->IP),解析目标IP
+	d.数据通过网络发送请求给目标IP的web服务器，web服务器解析请求
+	e.web服务器发送请求给数据库服务器(请求所需要的数据)，数据库解析后返回对应数据
+	f.web服务器整合资源后发回给浏览器
+4.URL组成
+	URL(统一资源定位器)
+	http://ecshop.test1.shopex123.com:80/goods/category.php?id=61
+	a.协议     http://
+		a1.协议
+			一组规则规范
+		a2.http协议
+			1>超文本传输协议
+			  规定了数据先传什么，后传什么怎么传输
+			  有图有真相(声音、图像、视频)
+			2>http协议的请求
+			   get 请求的信息显示在URL上，主要用于浏览，相对不安全
+				   https://s.taobao.com/search?q=lv&imgfile=&commend=all&ssid=s5-e&search_type=item&sourceId=tb.index&spm=a21bo.2017.201856-taobao-item.1&ie=utf8&initiative_id=tbindexz_20170306
+				   https://s.taobao.com/search?q=zara&imgfile=&js=1&stats_click=search_radio_all%3A1&initiative_id=staobaoz_20201116&ie=utf8
+			   post 请求的信息显示在请求体中，主要用于提交，相对安全
+			3>http协议的特点
+				无状态(彼此不记录过去的行为)
+			4>cookie和session
+				cookie  浏览记录，验证信息     定投广告
+				session 验证机制，存放在服务端   会话保持  30分钟超时  
+			5>状态码
+				200   2开头请求成功
+				302   3开头移动或者缓存(重定向)
+				404   4开头客户端请求有问题
+				500   5开否服务端有问题
+	b.域名     ecshop.test1.shopex123.com
+		FQDN(完全合格域名)
+		DNS(域名解析服务器)
+		b1.正向解析(域名--IP)
+			1>win+r--cmd--ping 域名
+				ping www.baidu.com
+			2>win+r--cmd--nslookup www.baidu.com
+		b2.反向解析(IP--域名)
+			win+r--cmd--nslookup  14.215.177.38
+	c.端口     :80
+		区分应用层进程的标识
+		80端口在浏览器中不显示
+			apache/nginx/iis   80
+			tomcat             8080
+			mysql              3306
+			oracle             1521
+		win下查看已经开放的端口
+			win+r--cmd--netstat -an | find "135"
+			netstat -an 系统开放的所有端口
+			|           管道，前面的输出作为后面的输入
+			find        搜索
+			
 
+	d.虚拟目录 goods
+	e.文件名   category.php
+	f.访问文件所使用的参数 ?id=61
+5.抓包
 
 
 
