@@ -140,5 +140,15 @@
 			服务器软件版本
 			时间(日期)
 		5>响应体信息
-
-
+	e.断点调试
+		bpu 设置断点的地址
+		伪响应
+			bpu http://ecshop.test1.shopex123.com/
+			断点调试可以选择指定的页面进行返回
+			bpu 
+			取消断点
+		伪请求
+			bpu http://ecshop.test1.shopex123.com/user.php
+			断点调试可以修改请求的数据
+			bpu 
+			取消断点
